@@ -1,3 +1,4 @@
+#include "application.h"
 #include "HX711ADC/HX711ADC.h"
 
 HX711ADC::HX711ADC(byte dout, byte pd_sck, byte gain) {
