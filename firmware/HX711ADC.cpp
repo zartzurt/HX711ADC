@@ -1,6 +1,6 @@
 #include "HX711ADC/HX711ADC.h"
 
-HX711::HX711(byte dout, byte pd_sck, byte gain) {
+HX711ADC::HX711ADC(byte dout, byte pd_sck, byte gain) {
 	PD_SCK 	= pd_sck;
 	DOUT 	= dout;
 	
@@ -10,15 +10,15 @@ HX711::HX711(byte dout, byte pd_sck, byte gain) {
 	set_gain(gain);
 }
 
-HX711::~HX711() {
+HX711ADC::~HX711ADC() {
 
 }
 
-bool HX711::is_ready() {
+bool HX711ADC::is_ready() {
 	return digitalRead(DOUT) == LOW;
 }
 
-void HX711::set_gain(byte gain) {
+void HX711ADC::set_gain(byte gain) {
 	switch (gain) {
 		case 128:		// channel A, gain factor 128
 			GAIN = 1;
@@ -35,7 +35,7 @@ void HX711::set_gain(byte gain) {
 	read();
 }
 
-long HX711::read() {
+long HX711ADC::read() {
 	// wait for the chip to become ready
 	while (!is_ready());
 
@@ -61,7 +61,7 @@ long HX711::read() {
 	return ((uint32_t) data[2] << 16) | ((uint32_t) data[1] << 8) | (uint32_t) data[0];
 }
 
-long HX711::read_average(byte times) {
+long HX711ADC::read_average(byte times) {
 	long sum = 0;
 	for (byte i = 0; i < times; i++) {
 		sum += read();
@@ -69,32 +69,32 @@ long HX711::read_average(byte times) {
 	return sum / times;
 }
 
-double HX711::get_value(byte times) {
+double HX711ADC::get_value(byte times) {
 	return read_average(times) - OFFSET;
 }
 
-float HX711::get_units(byte times) {
+float HX711ADC::get_units(byte times) {
 	return get_value(times) / SCALE;
 }
 
-void HX711::tare(byte times) {
+void HX711ADC::tare(byte times) {
 	double sum = read_average(times);
 	set_offset(sum);
 }
 
-void HX711::set_scale(float scale) {
+void HX711ADC::set_scale(float scale) {
 	SCALE = scale;
 }
 
-void HX711::set_offset(long offset) {
+void HX711ADC::set_offset(long offset) {
 	OFFSET = offset;
 }
 
-void HX711::power_down() {
+void HX711ADC::power_down() {
 	digitalWrite(PD_SCK, LOW);
 	digitalWrite(PD_SCK, HIGH);	
 }
 
-void HX711::power_up() {
+void HX711ADC::power_up() {
 	digitalWrite(PD_SCK, LOW);	
 }
