@@ -1,6 +1,3 @@
-#ifndef HX711_h
-#define HX711_h
-
 class HX711
 {
 	private:
