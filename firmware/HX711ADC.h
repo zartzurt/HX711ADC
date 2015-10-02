@@ -1,9 +1,10 @@
 #ifndef HX711ADC_h		
 #define HX711ADC_h
-#define ARDUINO_H
-#include <stdint.h>
-#include <stddef.h>
-#include <stdlib.h>
+
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01) 
+#define bitSet(value, bit) ((value) |= (1UL << (bit))) 
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit))) 
+#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
 
 class HX711ADC
 {
