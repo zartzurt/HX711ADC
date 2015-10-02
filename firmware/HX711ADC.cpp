@@ -1,4 +1,8 @@
 #include "application.h"
+#define ARDUINO_H
+#include <stdint.h>
+#include <stddef.h>
+#include <stdlib.h>
 #include "HX711ADC/HX711ADC.h"
 
 HX711ADC::HX711ADC(byte dout, byte pd_sck, byte gain) {
