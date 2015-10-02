@@ -14,9 +14,9 @@ class HX711ADC
 		// define clock and data pin, channel, and gain factor
 		// channel selection is made by passing the appropriate gain: 128 or 64 for channel A, 32 for channel B
 		// gain: 128 or 64 for channel A; channel B works with 32 gain factor only
-		HX711(byte dout, byte pd_sck, byte gain = 128);
+		HX711ADC(byte dout, byte pd_sck, byte gain = 128);
 
-		virtual ~HX711();
+		virtual ~HX711ADC();
 
 		// check if HX711 is ready
 		// from the datasheet: When output data is not ready for retrieval, digital output pin DOUT is high. Serial clock
@@ -56,4 +56,4 @@ class HX711ADC
 		// wakes up the chip after power down mode
 		void power_up();
 };
-#endif /* HX711_h */
+#endif /* HX711ADC_h */
