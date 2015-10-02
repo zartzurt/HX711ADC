@@ -1,4 +1,7 @@
-class HX711
+#ifndef HX711ADC_h		
+#define HX711ADC_h
+
+class HX711ADC
 {
 	private:
 		byte PD_SCK;	// Power Down and Serial Clock Input Pin
@@ -53,3 +56,4 @@ class HX711
 		// wakes up the chip after power down mode
 		void power_up();
 };
+#endif /* HX711_h */
