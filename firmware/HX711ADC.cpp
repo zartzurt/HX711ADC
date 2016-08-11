@@ -57,9 +57,7 @@ long HX711ADC::read() {
 		digitalWrite(PD_SCK, LOW);
 	}
 
-	data[2] ^= 0x80;
-
-	return ((uint32_t) data[2] << 16) | ((uint32_t) data[1] << 8) | (uint32_t) data[0];
+	return ((uint32_t) data[2] << 24) | ((uint32_t) data[1] << 16) | ((uint32_t) data[0] << 8) >> 8;
 }
 
 long HX711ADC::read_average(byte times) {
