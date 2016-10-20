@@ -57,7 +57,9 @@ long HX711ADC::read() {
 		digitalWrite(PD_SCK, LOW);
 	}
 
-	return ((uint32_t) data[2] << 24) | ((uint32_t) data[1] << 16) | ((uint32_t) data[0] << 8) >> 8;
+	// convert 24 bit signed integer to 32 bit singned integer
+	int32_t value = ((uint32_t) data[2] << 24) | ((uint32_t) data[1] << 16) | ((uint32_t) data[0] << 8);
+	return value >> 8;
 }
 
 long HX711ADC::read_average(byte times) {
